@@ -1,0 +1,28 @@
+﻿<Window x:Class="FileSystemManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileSystemManager"
+        mc:Ignorable="d"
+        Title="File system manager" Height="450" Width="800" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+    <Grid>
+        <Label x:Name="label_section1" Content="1. Traverse a tree of folders on the filesystem from the selected folder" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.386,0.631" Width="381"/>
+        <Label x:Name="label_FileVisitor" Content="Choose a file: " HorizontalAlignment="Left" Margin="33,41,0,0" VerticalAlignment="Top" Width="86"/>
+        <Button x:Name="button_selectFolder" Content="Select" HorizontalAlignment="Left" Margin="259,45,0,0" VerticalAlignment="Top" Width="77" Click="button_selectFolder_Click"/>
+        <TextBox x:Name="textBox_folderPath" HorizontalAlignment="Left" Margin="124,45,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="button_showList" Content="Show" HorizontalAlignment="Left" Margin="33,77,0,0" VerticalAlignment="Top" Height="29" Width="86" Click="button_showList_Click"/>
+        <DataGrid x:Name="dataGrid_filesList" AutoGenerateColumns="False" Margin="33,126,400,29">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="IsFolder" Binding="{Binding IsFolder}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox x:Name="comboBox_filters" HorizontalAlignment="Left" Margin="244,77,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBox_filters_SelectionChanged">
+            <ComboBoxItem Content="Show folders" />
+            <ComboBoxItem Content="Show files" />
+            <ComboBoxItem Content="Show .dll files" />
+        </ComboBox>
+        <Label x:Name="label_filters" Content="Filters:" HorizontalAlignment="Left" Margin="195,75,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
