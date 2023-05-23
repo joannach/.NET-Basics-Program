@@ -5,24 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileSystemManager"
         mc:Ignorable="d"
-        Title="File system manager" Height="450" Width="800" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+        Title="File system manager" Height="488" Width="800" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
     <Grid>
         <Label x:Name="label_section1" Content="1. Traverse a tree of folders on the filesystem from the selected folder" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.386,0.631" Width="381"/>
         <Label x:Name="label_FileVisitor" Content="Choose a file: " HorizontalAlignment="Left" Margin="33,41,0,0" VerticalAlignment="Top" Width="86"/>
         <Button x:Name="button_selectFolder" Content="Select" HorizontalAlignment="Left" Margin="259,45,0,0" VerticalAlignment="Top" Width="77" Click="button_selectFolder_Click"/>
         <TextBox x:Name="textBox_folderPath" HorizontalAlignment="Left" Margin="124,45,0,0" Text="" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="button_showList" Content="Show" HorizontalAlignment="Left" Margin="33,77,0,0" VerticalAlignment="Top" Height="29" Width="86" Click="button_showList_Click"/>
-        <DataGrid x:Name="dataGrid_filesList" AutoGenerateColumns="False" Margin="33,126,400,29">
+        <DataGrid x:Name="dataGrid_filesList" AutoGenerateColumns="False" Margin="33,126,32,44">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="IsFolder" Binding="{Binding IsFolder}" />
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox x:Name="comboBox_filters" HorizontalAlignment="Left" Margin="244,77,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBox_filters_SelectionChanged">
+        <ComboBox x:Name="comboBox_filters" HorizontalAlignment="Left" Margin="648,92,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBox_filters_SelectionChanged">
             <ComboBoxItem Content="Show folders" />
             <ComboBoxItem Content="Show files" />
             <ComboBoxItem Content="Show .dll files" />
         </ComboBox>
-        <Label x:Name="label_filters" Content="Filters:" HorizontalAlignment="Left" Margin="195,75,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_filters" Content="Filters:" HorizontalAlignment="Left" Margin="599,92,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_status" Content="Status" HorizontalAlignment="Left" Margin="498,18,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_statusValue" Content="" HorizontalAlignment="Left" Margin="502,37,0,0" VerticalAlignment="Top" Width="266"/>
+        <Button x:Name="button_abort" Content="Abort" HorizontalAlignment="Left" Margin="720,62,0,0" VerticalAlignment="Top" Width="48" Visibility="Hidden" Click="button_abort_Click"/>
+        <Label x:Name="label_directories" Content="Directories:" HorizontalAlignment="Left" Margin="33,428,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.408,1.138"/>
+        <Label x:Name="label_directoriesCount" Content="" HorizontalAlignment="Left" Margin="102,428,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.408,1.138" Width="59"/>
+        <Label x:Name="label_files" Content="Files:" HorizontalAlignment="Left" Margin="166,428,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.408,1.138"/>
+        <Label x:Name="label_filesCount" Content="" HorizontalAlignment="Left" Margin="207,428,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.408,1.138" Width="67"/>
     </Grid>
 </Window>
