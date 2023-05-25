@@ -23,6 +23,8 @@ namespace FileSystemManager
             fileSystemVisitor = new FileSystemVisitor(textBox_folderPath.Text);
             fileSystemVisitor.DirectoryFound += FileSystemVisitor_DirectoryFound;
             fileSystemVisitor.FileFound += FileSystemVisitor_FileFound;
+            fileSystemVisitor.FilteredDirectoryFound += FileSystemVisitor_FilteredDirectoryFound;
+            fileSystemVisitor.FilteredFileFound += FileSystemVisitor_FilteredFileFound;
         }
 
         public delegate void FolderFoundEventHandler(int count);
@@ -55,6 +57,7 @@ namespace FileSystemManager
                 fileSystemVisitor.folderPath = textBox_folderPath.Text;
                 fileSystemVisitor.Start += FileSystemVisitor_Start;
                 List<FileSystemItem> fileSystemItems = new List<FileSystemItem>();
+
                 foreach (string item in fileSystemVisitor)
                 {
                     bool isFolder = Directory.Exists(item);
@@ -114,12 +117,38 @@ namespace FileSystemManager
         {
             e.DirectoryCount = directoryCount++;
             label_directoriesCount.Content = directoryCount;
+            //OnFilteredDirectoryFound(new FilteredFileSystemEventArgs(e.Path));
         }
 
         private void FileSystemVisitor_FileFound(object sender, FileSystemEventArgs e)
         {
             e.FileCount = fileCount++;
             label_filesCount.Content = fileCount;
+            //OnFilteredFileFound(new FilteredFileSystemEventArgs(e.Path));
+        }
+
+        private void FileSystemVisitor_FilteredDirectoryFound(object sender, FilteredFileSystemEventArgs e)
+        {
+            //OnFilteredDirectoryFound(e);
+            if (e.AbortSearch)
+                shouldAbort = true;
+            if (e.ExcludeFromFinalList)
+            {
+                var args = new FileSystemEventArgs(e.Path) { ExcludeFromFinalList = true };
+                //OnDirectoryFound(args);
+            }
+        }
+
+        private void FileSystemVisitor_FilteredFileFound(object sender, FilteredFileSystemEventArgs e)
+        {
+            //OnFilteredFileFound(e);
+            if (e.AbortSearch)
+                shouldAbort = true;
+            if (e.ExcludeFromFinalList)
+            {
+                var args = new FileSystemEventArgs(e.Path) { ExcludeFromFinalList = true };
+                //fileSystemVisitor.OnFileFound(args);
+            }
         }
 
         private void button_abort_Click(object sender, RoutedEventArgs e)

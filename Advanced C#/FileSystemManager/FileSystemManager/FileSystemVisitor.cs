@@ -38,17 +38,26 @@ namespace FileSystemManager
         {
             OnStart();
 
-            //if (ShouldExcludeItem(folder))
-            //    yield break;
+            if (ShouldAbortSearch())
+                yield break;
 
             if (filter == null || filter(folder))
             {
-                OnDirectoryFound(new FileSystemEventArgs(folder));
-                yield return folder;
+                var args = new FileSystemEventArgs(folder);
+                OnDirectoryFound(args);
+
+                if (args.AbortSearch)
+                    yield break;
+
+                if (!args.ExcludeFromFinalList)
+                    yield return folder;
             }
 
             foreach (string file in Directory.GetFiles(folder))
             {
+                if (ShouldAbortSearch())
+                    yield break;
+
                 if (filter == null || filter(file))
                 {
                     var args = new FileSystemEventArgs(file);
@@ -57,32 +66,43 @@ namespace FileSystemManager
                     if (args.AbortSearch)
                         yield break;
 
-                    yield return file;
+                    if (!args.ExcludeFromFinalList)
+                        yield return file;
                 }
             }
 
             foreach (string subFolder in Directory.GetDirectories(folder))
             {
+                if (ShouldAbortSearch())
+                    yield break;
+
                 if (filter == null || filter(subFolder))
                 {
                     var args = new FileSystemEventArgs(subFolder);
                     OnDirectoryFound(args);
+
                     if (args.AbortSearch)
                         yield break;
 
-                    yield return subFolder;
+                    if (!args.ExcludeFromFinalList)
+                        yield return subFolder;
                 }
 
                 foreach (string item in TraverseFolders(subFolder))
                 {
+                    if (ShouldAbortSearch())
+                        yield break;
+
                     if (filter == null || filter(item))
                     {
                         var args = new FileSystemEventArgs(item);
                         OnFileFound(args);
+
                         if (args.AbortSearch)
                             yield break;
 
-                        yield return item;
+                        if (!args.ExcludeFromFinalList)
+                            yield return item;
                     }
                 }
             }
@@ -100,26 +120,43 @@ namespace FileSystemManager
             Finish?.Invoke(this, EventArgs.Empty);
         }
 
-        private void OnFileFound(FileSystemEventArgs e)
+        protected virtual void OnFileFound(FileSystemEventArgs e)
         {
             FileFound?.Invoke(this, e);
         }
 
-        private void OnDirectoryFound(FileSystemEventArgs e)
+        protected virtual void OnDirectoryFound(FileSystemEventArgs e)
         {
             DirectoryFound?.Invoke(this, e);
         }
 
-        private void OnFilteredFileFound(FilteredFileSystemEventArgs e)
+        protected virtual void OnFilteredFileFound(FilteredFileSystemEventArgs e)
         {
             FilteredFileFound?.Invoke(this, e);
-            //exclude = exclude || /* Your logic for excluding the file */;
         }
 
-        private void OnFilteredDirectoryFound(FilteredFileSystemEventArgs e)
+        protected virtual void OnFilteredDirectoryFound(FilteredFileSystemEventArgs e)
         {
             FilteredDirectoryFound?.Invoke(this, e);
-            //exclude = exclude || /* Your logic for excluding the directory */;
+        }
+
+        private bool ShouldExcludeItem(string path)
+        {
+            var args = new FileSystemEventArgs(path);
+            OnFilteredFileFound(new FilteredFileSystemEventArgs(path));
+
+            if (args.ExcludeFromFinalList)
+                return true;
+
+            return false;
+        }
+
+        private bool ShouldAbortSearch()
+        {
+            var args = new FileSystemEventArgs(null);
+            OnFinish();
+
+            return args.AbortSearch;
         }
     }
 }
