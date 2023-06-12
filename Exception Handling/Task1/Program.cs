@@ -18,11 +18,6 @@ namespace Task1
                     Console.Write("Enter a line of text (or press Enter to quit): ");
                     string line = Console.ReadLine();
 
-                    if (string.IsNullOrEmpty(line))
-                    {
-                        break;
-                    }
-
                     char firstChar = line[0];
                     Console.WriteLine("First character: " + firstChar);
                 }

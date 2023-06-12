@@ -10,6 +10,8 @@ namespace Task2
             {
                 throw new ArgumentNullException();
             }
+
+            stringValue = stringValue.Trim();
             if (string.IsNullOrEmpty(stringValue))
             {
                 throw new FormatException();
@@ -51,12 +53,7 @@ namespace Task2
                     }
                 }
 
-                if (result * sign < int.MinValue || result * sign > int.MaxValue)
-                {
-                    throw new OverflowException();
-                }
-
-                return (int)(result * sign);
+                return Convert.ToInt32(result * sign);
             }
             catch (OverflowException)
             {
