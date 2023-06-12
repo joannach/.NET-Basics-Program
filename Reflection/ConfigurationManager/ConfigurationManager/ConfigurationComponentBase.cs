@@ -1,11 +1,18 @@
 ﻿using ConfigManager.Attributes;
 using ConfigManager.Exceptions;
-using ConfigManager.Providers;
+using ConfigurationManager;
 
 namespace ConfigManager
 {
     public class ConfigurationComponentBase
     {
+        private readonly ProviderService providerService;
+
+        public ConfigurationComponentBase()
+        {
+            providerService = new ProviderService();
+        }
+
         public void SaveSettings(string? filePath = "")
         {
             var properties = GetType().GetProperties();
@@ -17,24 +24,13 @@ namespace ConfigManager
                     var configAttribute = (ConfigurationItemAttribute)attribute[0];
                     var settingName = configAttribute.SettingName;
                     var value = property.GetValue(this)?.ToString();
+                    if (string.IsNullOrEmpty(value))
+                        throw new ConfigurationValueIsEmptyException("Configuration value is empty");
+
                     var providerType = configAttribute.ProviderType;
+                    var configProvider = providerService.GetProviderByType(providerType, filePath);
 
-                    if (providerType == typeof(FileConfigurationProvider))
-                    {
-                        if (string.IsNullOrEmpty(filePath))
-                            throw new ConfigurationFilePathIsEmptyException("File path is invalid");
-
-                        if (string.IsNullOrEmpty(value))
-                            throw new ConfigurationValueIsEmptyException("Configuration value is empty");
-
-                        var fileProvider = new FileConfigurationProvider(filePath);
-                        fileProvider.SetValue(settingName, value);
-                    }
-                    else if (providerType == typeof(ConfigurationManagerConfigurationProvider))
-                    {
-                        var configManagerProvider = new ConfigurationManagerConfigurationProvider();
-                        configManagerProvider.SetValue(settingName, value);
-                    }
+                    configProvider.SetValue(settingName, value);
                 }
             }
         }
@@ -50,19 +46,9 @@ namespace ConfigManager
                     var configAttribute = (ConfigurationItemAttribute)attribute[0];
                     var settingName = configAttribute.SettingName;
                     var providerType = configAttribute.ProviderType;
+                    var configProvider = providerService.GetProviderByType(providerType, filePath);
 
-                    string value = null;
-
-                    if (providerType == typeof(FileConfigurationProvider))
-                    {
-                        var fileProvider = new FileConfigurationProvider(filePath);
-                        value = fileProvider.GetValue(settingName);
-                    }
-                    else if (providerType == typeof(ConfigurationManagerConfigurationProvider))
-                    {
-                        var configManagerProvider = new ConfigurationManagerConfigurationProvider();
-                        value = configManagerProvider.GetValue(settingName);
-                    }
+                    var value = configProvider.GetValue(settingName);
 
                     if (!string.IsNullOrEmpty(value))
                     {

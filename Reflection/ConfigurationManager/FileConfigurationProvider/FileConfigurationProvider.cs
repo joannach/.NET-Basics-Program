@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace ConfigManager.Providers
 {
-    public class FileConfigurationProvider : ConfigurationProviderBase, IConfigurationProvider
+    public class FileConfigurationProvider : IConfigurationProvider
     {
         private readonly string filePath;
 
@@ -37,6 +37,9 @@ namespace ConfigManager.Providers
 
         public void SetValue(string settingName, string value)
         {
+            if (!File.Exists(filePath))
+                throw new FileNotFoundException(filePath);
+
             string json = File.ReadAllText(filePath);
             if (string.IsNullOrEmpty(json))
             {

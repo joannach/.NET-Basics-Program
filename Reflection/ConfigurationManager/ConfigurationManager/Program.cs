@@ -1,4 +1,5 @@
 ﻿using ConfigManager.ConfigurationComponents;
+using System.Security.Policy;
 
 namespace ConfigManager
 {
@@ -6,11 +7,16 @@ namespace ConfigManager
     {
         public static void Main(string[] args)
         {
+            Demo();
+        }
+
+        public static void Demo()
+        {
             var configurationComponent = new TestConfigParametersComponent();
             configurationComponent.MaxConfigSections = 10;
             configurationComponent.RegexConfigSectionNames = "test";
 
-            configurationComponent.SaveSettings("mySettings.json");
+            configurationComponent.SaveSettings("mySet.json");
         }
     }
 }

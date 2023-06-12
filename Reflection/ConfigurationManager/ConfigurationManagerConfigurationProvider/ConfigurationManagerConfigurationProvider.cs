@@ -3,7 +3,7 @@ using System.Configuration;
 
 namespace ConfigManager.Providers
 {
-    public class ConfigurationManagerConfigurationProvider : ConfigurationProviderBase, IConfigurationProvider
+    public class ConfigurationManagerConfigurationProvider : IConfigurationProvider
     {
         public string GetValue(string settingName)
         {
