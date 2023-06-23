@@ -10,13 +10,13 @@ namespace Tasks
     public class DoublyLinkedList<T> : IDoublyLinkedList<T>
     {
         private Node<T> head;
-        private Node<T> Head
+        public Node<T> Head
         {
             get { return head; }
             set { head = value; }
         }
         private Node<T> tail;
-        private Node<T> Tail
+        public Node<T> Tail
         {
             get { return tail; }
             set { tail = value; }
@@ -116,12 +116,7 @@ namespace Tasks
 
         public IEnumerator<T> GetEnumerator()
         {
-            Node<T> current = head;
-            while(current != null)
-            {
-                yield return current.data;
-                current = current.Next;
-            }
+            return new DoublyLinkedListEnumerator<T>(this);
         }
 
         public void Remove(T item)
@@ -172,12 +167,19 @@ namespace Tasks
             
             if (index == 0)
             {
+                T removed;
                 if (head != null)
+                {
+                    removed = head.data;
                     head = head.Next;
+                }
                 else
+                {
+                    removed = tail.data;
                     tail = null;
+                }
                 Length--;
-                return head.data;
+                return removed;
             }
 
             int currentIndex = 0;
