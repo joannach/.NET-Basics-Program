@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLife.Tests", "GameOfLife.Tests\GameOfLife.Tests.csproj", "{39A491DF-7708-458D-AA6F-1D86FB441D60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLife", "GameOfLife\GameOfLife.csproj", "{3D0F4F1C-779A-4102-80A3-9827DC7818FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeFactor", "PrimeFactor\PrimeFactor.csproj", "{AF39FF33-688E-44A4-B162-DEE896C281BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeFactor.Tests", "PrimeFactor.Tests\PrimeFactor.Tests.csproj", "{B3BC0BF4-3556-4658-9BAB-11A18F3161A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarryPotter.Tests", "HarryPotter.Tests\HarryPotter.Tests.csproj", "{CAF326FA-EE62-4494-924A-E264115D9335}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarryPotter", "HarryPotter\HarryPotter.csproj", "{97678683-03D2-45E2-9034-3849E8785A7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39A491DF-7708-458D-AA6F-1D86FB441D60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A491DF-7708-458D-AA6F-1D86FB441D60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A491DF-7708-458D-AA6F-1D86FB441D60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A491DF-7708-458D-AA6F-1D86FB441D60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D0F4F1C-779A-4102-80A3-9827DC7818FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D0F4F1C-779A-4102-80A3-9827DC7818FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D0F4F1C-779A-4102-80A3-9827DC7818FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D0F4F1C-779A-4102-80A3-9827DC7818FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF39FF33-688E-44A4-B162-DEE896C281BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF39FF33-688E-44A4-B162-DEE896C281BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF39FF33-688E-44A4-B162-DEE896C281BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF39FF33-688E-44A4-B162-DEE896C281BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3BC0BF4-3556-4658-9BAB-11A18F3161A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3BC0BF4-3556-4658-9BAB-11A18F3161A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3BC0BF4-3556-4658-9BAB-11A18F3161A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3BC0BF4-3556-4658-9BAB-11A18F3161A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAF326FA-EE62-4494-924A-E264115D9335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAF326FA-EE62-4494-924A-E264115D9335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAF326FA-EE62-4494-924A-E264115D9335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAF326FA-EE62-4494-924A-E264115D9335}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97678683-03D2-45E2-9034-3849E8785A7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97678683-03D2-45E2-9034-3849E8785A7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97678683-03D2-45E2-9034-3849E8785A7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97678683-03D2-45E2-9034-3849E8785A7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {42BAABEC-5CF0-488B-AAF4-C776F45D8D1B}
+	EndGlobalSection
+EndGlobal
