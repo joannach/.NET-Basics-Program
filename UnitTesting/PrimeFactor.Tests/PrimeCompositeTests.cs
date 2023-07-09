@@ -3,16 +3,7 @@ namespace PrimeFactor.Tests
     public class Tests
     {
         private PrimeComposite primeComposite;
-        private readonly string expectedOutput = "1 2 prime 4 composite 6 composite 8 composite 10 composite " +
-                "prime 12 composite 14 composite 16 composite 18 composite prime 20 composite " +
-                "22 composite prime 24 composite 26 composite 28 composite prime 30 composite " +
-                "32 composite 34 composite 36 composite prime 38 composite 40 composite " +
-                "prime 42 composite 44 composite 46 composite prime 48 composite 50 composite " +
-                "52 composite 54 composite prime 56 composite 58 composite 60 composite prime " +
-                "62 composite prime 64 composite 66 composite 68 composite prime 70 composite " +
-                "72 composite 74 composite 76 composite prime 78 composite 80 composite " +
-                "prime 82 composite 84 composite 86 composite prime 88 composite 90 composite " +
-                "92 composite 94 composite prime 96 composite 98 composite 100 composite";
+        private readonly string expectedOutput = "1 2 prime 4 prime 6 prime 8 composite 10 prime 12 prime 14 composite 16 prime 18 prime 20 composite 22 prime 24 composite 26 composite 28 prime 30 prime 32 composite 34 composite 36 prime 38 composite 40 prime 42 prime 44 composite 46 prime 48 composite 50 composite 52 prime 54 composite 56 composite 58 prime 60 prime 62 composite 64 composite 66 prime 68 composite 70 prime 72 prime 74 composite 76 composite 78 prime 80 composite 82 prime 84 composite 86 composite 88 prime 90 composite 92 composite 94 composite 96 prime 98 composite 100";
 
         [SetUp]
         public void Setup()

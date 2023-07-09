@@ -10,7 +10,7 @@ namespace GameOfLife.Tests
             gameOfLife = new GameOfLife();
         }
 
-        [TestCaseSource(typeof(LifeGridsData), nameof(LifeGridsData.BaseGenerations))]
+        [TestCaseSource(nameof(GetNextGenerationTestCases))]
         public void GetNextGeneration_ManyDifferentBaseGenerations(char[,] baseGeneration, char[,] nextGeneration)
         {
             // Act
@@ -19,5 +19,77 @@ namespace GameOfLife.Tests
             // Assert
             Assert.AreEqual(outputGeneration, nextGeneration);
         }
+
+        private static object[] GetNextGenerationTestCases =
+        {
+            new object[]
+            {
+                new char[,]
+                {
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' }
+                },
+                new char[,]
+                {
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' }
+                }
+            },
+            new object[]
+            {
+                new char[,]
+                {
+                    { '.', '.', '.', '.' },
+                    { '.', '*', '.', '.' },
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' }
+                },
+                new char[,]
+                {
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' }
+                }
+            },
+            new object[]
+            {
+                new char[,]
+                {
+                    { '.', '.', '.', '.' },
+                    { '.', '*', '*', '.' },
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' }
+                },
+                new char[,]
+                {
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' }
+                }
+            },
+            new object[]
+            {
+                new char[,]
+                {
+                    { '.', '.', '.', '.' },
+                    { '.', '*', '.', '.' },
+                    { '.', '*', '.', '.' },
+                    { '.', '.', '.', '.' }
+                },
+                new char[,]
+                {
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' },
+                    { '.', '.', '.', '.' }
+                }
+            }
+        };
     }
 }

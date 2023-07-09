@@ -1,33 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace PrimeFactor
 {
     public class PrimeComposite
     {
-        public string[] GetPrimeCompositeNumbers(int start, int end)
+        public readonly string PRIME = "prime ";
+
+        public readonly string COMPOSITE = "composite ";
+
+        public string GetPrimeCompositeNumbers(int start, int end)
         {
-            var result = new string[end];
+            StringBuilder sb = new StringBuilder();
 
-            for(int i = 0; i< end; i++)
+            for (int number = start; number <= end; number++)
             {
-
+                if (IsPrime(number))
+                {
+                    sb.Append(PRIME);
+                }
+                else if (IsComposite(number) && !IsEven(number))
+                {
+                    sb.Append(COMPOSITE);
+                }
+                else
+                {
+                    sb.Append(number + " ");
+                }
             }
 
-            return new string[0];
+            return sb.ToString().Trim();
         }
 
-        private bool IsPrime()
+        public bool IsPrime(int num)
         {
-            return false;
+            if (num <= 2)
+                return false;
+
+            for (int i = 2; i * i <= num; i++)
+            {
+                if (num % i == 0)
+                    return false;
+            }
+
+            return true;
         }
 
-        private bool IsComposite()
+        public bool IsComposite(int num)
         {
-            return false;
+            return num > 1 && !IsPrime(num);
+        }
+
+        public bool IsEven(int num)
+        {
+            return num % 2 == 0;
         }
     }
 }
