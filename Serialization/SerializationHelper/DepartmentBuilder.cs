@@ -10,8 +10,8 @@
         {
             var employeesTest = new List<Employee>()
             {
-                new Employee() { EmpoyeeName = "EmployeeName1"},
-                new Employee() { EmpoyeeName = "EmployeeName2"}
+                new Employee() { EmployeeName = "EmployeeName1"},
+                new Employee() { EmployeeName = "EmployeeName2"}
             };
 
             Department.DepartmentName = departmentName;
