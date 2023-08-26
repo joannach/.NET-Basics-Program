@@ -12,7 +12,7 @@ namespace Serialization
         public static void DemoXml()
         {
             var binarySerializator = new XMLSerializator();
-            var departmentBuilder = new DepartmentBuilder();
+            var departmentBuilder = new TestDepartmentBuilder();
             var valutToSerialize = departmentBuilder.CreateDepartment("TestDepartment");
 
             binarySerializator.Serialize(valutToSerialize, "xmlSerialization.xml");

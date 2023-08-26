@@ -1,10 +1,10 @@
 ﻿namespace SerializationHelper
 {
-    public class DepartmentBuilder
+    public class TestDepartmentBuilder
     {
         public Department Department = new Department();
 
-        public DepartmentBuilder() {}
+        public TestDepartmentBuilder() {}
 
         public Department CreateDepartment(string departmentName)
         {

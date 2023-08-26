@@ -12,7 +12,7 @@ namespace Serialization
         public static void DemoJson()
         {
             var jsonSerializator = new JsonSerializator();
-            var departmentBuilder = new DepartmentBuilder();
+            var departmentBuilder = new TestDepartmentBuilder();
             var valutToSerialize = departmentBuilder.CreateDepartment("TestJsonDepartment");
 
             jsonSerializator.Serialize(valutToSerialize, "jsonSerialization.json");

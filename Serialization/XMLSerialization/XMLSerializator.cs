@@ -8,9 +8,11 @@ namespace XMLSerialization
         public override T Deserialize<T>(string pathToFileToDeserialize)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(T));
-            FileStream fs = new FileStream(pathToFileToDeserialize, FileMode.Open);
-            T result = (T)serializer.Deserialize(fs);
-            fs.Close();
+            T result;
+            using (FileStream fs = new FileStream(pathToFileToDeserialize, FileMode.Open)) 
+            {
+                result = (T)serializer.Deserialize(fs);
+            }
 
             return result;
         }
@@ -18,9 +20,10 @@ namespace XMLSerialization
         public override void Serialize(object objToSerialize, string pathToFile)
         {
             XmlSerializer serializer = new XmlSerializer(objToSerialize.GetType());
-            FileStream fs = new FileStream(pathToFile, FileMode.Create);
-            serializer.Serialize(fs, objToSerialize);
-            fs.Close();
+            using (FileStream fs = new FileStream(pathToFile, FileMode.Create))
+            {
+                serializer.Serialize(fs, objToSerialize);
+            }
         }
     }
 }
