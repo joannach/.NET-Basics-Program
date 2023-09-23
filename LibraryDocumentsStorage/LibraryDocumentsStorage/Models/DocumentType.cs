@@ -4,6 +4,7 @@
     {
         Patent,
         Book,
-        LocalizedBook
+        LocalizedBook,
+        Magazine
     }
 }

@@ -1,0 +1,20 @@
+﻿{
+  "CacheSettings": [
+    {
+      "DocumentType": "Patent",
+      "CacheDurationMinutes": 60
+    },
+    {
+      "DocumentType": "Book",
+      "CacheDurationMinutes": 30
+    },
+    {
+      "DocumentType": "LocalizedBook",
+      "CacheDurationMinutes": 30
+    },
+    {
+      "DocumentType": "Magazine",
+      "CacheDurationMinutes": ""
+    }
+  ]
+}
